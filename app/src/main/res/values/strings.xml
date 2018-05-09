@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Restaurant app</string>
+    <string name="near_the">Near the</string>
+    <string name="no_restaurants">No restaurants found.</string>
+    <string name="no_internet_connection">No internet connection. Please turn on your wifi or mobile
+        and restart the app. </string>
+</resources>
