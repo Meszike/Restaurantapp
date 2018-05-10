@@ -38,10 +38,6 @@ private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     private static final String url = "webUrl";
 
-    private static final String tags = "tags";
-
-    private static final String author = "webTitle";
-
     /**
      * /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -50,7 +46,7 @@ private static final String LOG_TAG = QueryUtils.class.getSimpleName();
     }
 
     /**
-     * Query the USGS dataset and return a list of {@link Restaurant} objects.
+     * Query the GUARDIAN dataset and return a list of {@link Restaurant} objects.
      */
 
     public static List<Restaurant> fetchRestaurantData(String requestUrl) {
@@ -199,26 +195,9 @@ private static final String LOG_TAG = QueryUtils.class.getSimpleName();
                 // Extract the value for the key called "webUrl"
                 String newsUrl = currentRestaurant.getString(url);
 
-                //Extract the JSONArray associated with the key called "tags",
-                JSONArray currentNewsAuthorArray = currentRestaurant.getJSONArray(tags);
-
-                String newsAuthor = "N/A";
-
-                //Check if "tags" array contains data
-                int tagsLenght = currentNewsAuthorArray.length();
-
-
-                if (tagsLenght == 1) {
-                    // Create a JSONObject for author
-                    JSONObject currentNewsAuthor = currentNewsAuthorArray.getJSONObject(0);
-
-                    String newsAuthor1 = currentNewsAuthor.getString(author);
-
-                    newsAuthor = "written by: " + newsAuthor1;
-    }
                 // Create a new News object with the title, category, author, date, url ,
                 // from the JSON response.
-                Restaurant restaurant = new Restaurant(newsTitle, newsSection, newsAuthor, newsDate, newsUrl);
+                 Restaurant restaurant = new Restaurant(newsTitle, newsSection, newsDate, newsUrl);
 
                 // Add the new {@link Restaurant} to the list of restaurants.
                 restaurants.add(restaurant);

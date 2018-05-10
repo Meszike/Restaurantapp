@@ -59,11 +59,6 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         // Display the category of the current news in that TextView
         restaurantCategoryTextView.setText(currentRestaurantClass.getNewsCategory());
 
-        // Find the TextView with News Author
-        TextView newsAuthorTextView = listItemView.findViewById(R.id.author);
-
-        // Display the category of the current news in that TextView
-        newsAuthorTextView.setText(currentRestaurantClass.getNewsAuthor());
 
      // Find the TextView with News Date in the activity_main.xml layout with the ID category
         TextView newsDateTextView = listItemView.findViewById(R.id.date);

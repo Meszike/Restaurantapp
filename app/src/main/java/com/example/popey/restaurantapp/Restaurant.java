@@ -8,9 +8,6 @@ public class Restaurant {
     // News section
     private String newsCategory;
 
-    // Author name
-    private String newsAuthor;
-
     // Date of publishing
     private String newsDate;
 
@@ -22,15 +19,13 @@ public class Restaurant {
      *
      * @param title    is news title
      * @param category is the section of the news
-     * @param author   is author name
      * @param date     is news date publishing
      * @param url      is news URL
      */
 
-    public Restaurant(String title, String category, String author, String date, String url) {
+    public Restaurant(String title, String category, String date, String url) {
         newsTitle = title;
         newsCategory = category;
-        newsAuthor = author;
         newsDate = date;
         newsUrl = url;
     }
@@ -49,14 +44,7 @@ public class Restaurant {
         return newsCategory;
     }
 
-    /**
-     * Returns the name of author.
-     */
-    public String getNewsAuthor() {
-        return newsAuthor;
-    }
-
-    /**
+       /**
      * Returns publishing date.
      */
     public String getNewsDate() {
