@@ -13,7 +13,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:padding="16dp"
-        android:textColor="#757575"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="italic"
         tools:text="Sorry, unexpected problem with downloading data from Guardian\'s server. Close the app and try it later." />

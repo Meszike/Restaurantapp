@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:textColor="#FF4081"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
         tools:text="title" />
@@ -21,20 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:paddingTop="8dp"
-        android:textColor="#212121"
+        android:textColor="#000000"
         android:textSize="16sp"
+        android:textStyle="bold"
         tools:text="category" />
-
-    <TextView
-        android:id="@+id/author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/category"
-        android:paddingTop="8dp"
-        android:textColor="#757575"
-        android:textSize="12sp"
-        tools:text="author" />
 
     <TextView
         android:id="@+id/date"
@@ -43,8 +33,9 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/category"
         android:paddingTop="7dp"
-        android:textColor="#757575"
+        android:textColor="#000000"
         android:textSize="12sp"
+        android:textStyle="bold"
         tools:text="date" />
 
 </RelativeLayout>
