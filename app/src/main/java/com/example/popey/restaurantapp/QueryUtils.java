@@ -21,9 +21,9 @@ import java.util.List;
 public class QueryUtils {
 
     /**
- * Tag for the log messages
- */
-private static final String LOG_TAG = QueryUtils.class.getSimpleName();
+     * Tag for the log messages
+     */
+    private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     // Keys used for the JSON response
     private static final String response = "response";
@@ -147,7 +147,7 @@ private static final String LOG_TAG = QueryUtils.class.getSimpleName();
     }
 
     /**
-     * Return a list of {@link Restaurant} objects that has been built up from
+     * Return a list of {@link Restaurant news} objects that has been built up from
      * parsing the given JSON response.
      */
     private static List<Restaurant> extractFeatureFromJson(String restaurantJSON) {
@@ -156,7 +156,7 @@ private static final String LOG_TAG = QueryUtils.class.getSimpleName();
             return null;
         }
         // Create an empty ArrayList that we can start adding restaurants to
-        List<Restaurant>restaurants = new ArrayList<>();
+        List<Restaurant> restaurants = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -197,7 +197,7 @@ private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
                 // Create a new News object with the title, category, author, date, url ,
                 // from the JSON response.
-                 Restaurant restaurant = new Restaurant(newsTitle, newsSection, newsDate, newsUrl);
+                Restaurant restaurant = new Restaurant(newsTitle, newsSection, newsDate, newsUrl);
 
                 // Add the new {@link Restaurant} to the list of restaurants.
                 restaurants.add(restaurant);
@@ -213,6 +213,6 @@ private static final String LOG_TAG = QueryUtils.class.getSimpleName();
         // Return the list of restaurants
         return restaurants;
 
-}
     }
+}
 

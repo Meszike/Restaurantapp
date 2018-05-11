@@ -4,4 +4,12 @@
     <string name="no_restaurants">No restaurants found.</string>
     <string name="no_internet_connection">No internet connection. Please turn on your wifi or mobile
         and restart the app. </string>
+    <string name="no_news">Sorry, unexpected problem with downloading data from Guardian\'s server.
+        Close the app and try it later. </string>
+    <string name="UrlProblem">Problem building the URL</string>
+
+
+
+
+
 </resources>
