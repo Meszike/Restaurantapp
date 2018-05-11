@@ -22,7 +22,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     /**
      * Constructs a new {@link RestaurantAdapter}.
      *
-     * @param context of the app
+     * @param context    of the app
      * @param restaurant is the list of restaurants, which is the data source of the adapter
      */
     public RestaurantAdapter(Context context, List<Restaurant> restaurant) {
@@ -43,24 +43,24 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
                     R.layout.restaurant_list_item, parent, false);
         }
 
-        // Find the restaurant at the given position in the list of restaurants
+        // Find the restaurant news at the given position in the list of restaurant news
         Restaurant currentRestaurantClass = getItem(position);
 
         // Find the TextView with view ID title
-        TextView titleTextView =  listItemView.findViewById(R.id.title);
+        TextView titleTextView = listItemView.findViewById(R.id.title);
 
         // Display the title of the current news in that TextView
         assert currentRestaurantClass != null;
         titleTextView.setText(currentRestaurantClass.getNewsTitle());
 
-       // Find the TextView with News Category
+        // Find the TextView with News Category
         TextView restaurantCategoryTextView = listItemView.findViewById(R.id.category);
 
         // Display the category of the current news in that TextView
         restaurantCategoryTextView.setText(currentRestaurantClass.getNewsCategory());
 
 
-     // Find the TextView with News Date in the activity_main.xml layout with the ID category
+        // Find the TextView with News Date with the ID category
         TextView newsDateTextView = listItemView.findViewById(R.id.date);
 
         // Display the category of the current news in that TextView

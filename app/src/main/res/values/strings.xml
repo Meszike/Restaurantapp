@@ -7,9 +7,4 @@
     <string name="no_news">Sorry, unexpected problem with downloading data from Guardian\'s server.
         Close the app and try it later. </string>
     <string name="UrlProblem">Problem building the URL</string>
-
-
-
-
-
 </resources>

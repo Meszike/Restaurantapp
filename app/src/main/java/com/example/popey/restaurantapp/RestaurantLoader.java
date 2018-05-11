@@ -8,14 +8,16 @@ import java.util.List;
 public class RestaurantLoader extends AsyncTaskLoader<List<Restaurant>> {
 
 
-    /** Query URL */
+    /**
+     * Query URL
+     */
     private String mUrl;
 
     /**
      * Constructs a new {@link RestaurantLoader}.
      *
      * @param context of the activity
-     * @param url to load data from
+     * @param url     to load data from
      */
     public RestaurantLoader(Context context, String url) {
         super(context);

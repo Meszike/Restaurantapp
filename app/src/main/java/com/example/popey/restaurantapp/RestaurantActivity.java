@@ -21,68 +21,67 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
 
 
     /**
-     * URL for Restaurant data from the GUARDIAN dataset
+     * URL for Restaurant news data from the GUARDIAN dataset
      */
     private static final String GUARDIAN_REQUEST_URL =
-            "http://content.guardianapis.com/search?q=the_best||restaurants&api-key=51d29186-f983-44eb-9972-8a289449db3e";
+            "http://content.guardianapis.com/search?q=the_best||restaurants&api-key=test";
 
     /**
-     * Constant value for the restaurant loader ID. We can choose any integer.
-     * This really only comes into play if you're using multiple loaders.
+     * Constant value for the Restaurant news loader ID. We can choose any integer.
      */
     private static final int RESTAURANT_LOADER_ID = 1;
 
     /**
-     * Adapter for the list of restaurants
+     * Adapter for the list of restaurant news
      */
     private RestaurantAdapter rAdapter;
-    /** TextView that is displayed when the list is empty */
+
+    /**
+     * TextView that is displayed when the list is empty
+     */
     private TextView mEmptyStateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_activity);
+
         // Find a reference to the {@link ListView} in the layout
         ListView restaurantListView = findViewById(R.id.list);
-
-        mEmptyStateTextView =  findViewById(R.id.empty_view);
-
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         restaurantListView.setEmptyView(mEmptyStateTextView);
 
-
-
-        // Create a new adapter that takes an empty list of restaurants as input
+        // New adapter that takes an empty list of restaurants news as input
         rAdapter = new RestaurantAdapter(this, new ArrayList<Restaurant>());
 
         // Set the adapter on the {@link ListView}
-        // so the list can be populated in the user interface
         restaurantListView.setAdapter(rAdapter);
 
-
-        // Set an item click listener on the ListView, which sends an intent to a web browser
+        // Click listener on the ListView, which sends an intent to a web browser
         // to open a website with more information about the selected restaurant.
         restaurantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Find the current Restaurant that was clicked on
+                // Find the current Restaurant news that was clicked
                 Restaurant currentRestaurant = rAdapter.getItem(position);
 
-                // Convert the String URL into a URI object (to pass into the Intent constructor)
+                // The String URL into a URI object (to pass into the Intent constructor)
                 Uri restaurantUri = Uri.parse(currentRestaurant.getUrl());
 
-                // Create a new intent to view the Restaurant URI
+                // New intent to view the Restaurant news URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, restaurantUri);
 
-                // Send the intent to launch a new activity
+                // The intent to launch a new activity
                 startActivity(websiteIntent);
             }
         });
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
+
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
             // Get a reference to the LoaderManager, in order to interact with loaders.
@@ -101,31 +100,30 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
         }
     }
 
-
     @Override
     public Loader<List<Restaurant>> onCreateLoader(int i, Bundle bundle) {
-        // Create a new loader for the given URL
+        // New loader for the given URL
         return new RestaurantLoader(this, GUARDIAN_REQUEST_URL);
     }
 
     @Override
     public void onLoadFinished(Loader<List<Restaurant>> loader, List<Restaurant> restaurants) {
-
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No restaurants found."
         mEmptyStateTextView.setText(R.string.no_restaurants);
 
-        // Clear the adapter of previous restaurant data
+        // Clear the adapter of previous Restaurant news data
         rAdapter.clear();
 
-        // If there is a valid list of {@link Restaurant}s, then add them to the adapter's
+        // If there is a valid list of {@link Restaurant news}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (restaurants != null && !restaurants.isEmpty()) {
             rAdapter.addAll(restaurants);
         }
     }
+
     @Override
     public void onLoaderReset(Loader<List<Restaurant>> loader) {
         // Loader reset, so we can clear out our existing data.
