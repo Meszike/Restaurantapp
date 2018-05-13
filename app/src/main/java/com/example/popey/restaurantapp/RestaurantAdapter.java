@@ -53,12 +53,17 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         assert currentRestaurantClass != null;
         titleTextView.setText(currentRestaurantClass.getNewsTitle());
 
+        // Find the TextView with Author
+        TextView restaurantAuthorTextView = listItemView.findViewById(R.id.newsAuthor);
+
+        // Display the author of the current news in that TextView
+        restaurantAuthorTextView.setText(currentRestaurantClass.getAuthor());
+
         // Find the TextView with News Category
         TextView restaurantCategoryTextView = listItemView.findViewById(R.id.category);
 
         // Display the category of the current news in that TextView
         restaurantCategoryTextView.setText(currentRestaurantClass.getNewsCategory());
-
 
         // Find the TextView with News Date with the ID category
         TextView newsDateTextView = listItemView.findViewById(R.id.date);

@@ -60,10 +60,21 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:layout_below">@+id/category</item>
+        <item name="android:layout_below">@+id/newsAuthor</item>
         <item name="android:paddingTop">@dimen/padding1</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">@dimen/text_size1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text4">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_below">@+id/category</item>
+        <item name="android:paddingTop">@dimen/padding1</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/text_size3</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>

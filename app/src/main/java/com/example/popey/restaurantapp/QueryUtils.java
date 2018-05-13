@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QueryUtils {
-
     /**
      * Tag for the log messages
      */
@@ -27,19 +26,15 @@ public class QueryUtils {
 
     // Keys used for the JSON response
     private static final String response = "response";
-
     private static final String results = "results";
-
     private static final String section = "sectionName";
-
     private static final String date = "webPublicationDate";
-
     private static final String title = "webTitle";
-
     private static final String url = "webUrl";
+    private static final String fields = "fields";
+    private static final String byline = "byline";
 
     /**
-     * /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
      */
     private QueryUtils() {
@@ -192,12 +187,18 @@ public class QueryUtils {
                 // Extract the article name for the key called "webTitle"
                 String newsTitle = currentRestaurant.getString(title);
 
+                // Extract the JSONObject associated with the key called "fields",
+                JSONObject field = currentRestaurant.getJSONObject(fields);
+
+                // Extract the article name for the key called "byline"
+                String newsAuthor = field.getString(byline);
+
                 // Extract the value for the key called "webUrl"
                 String newsUrl = currentRestaurant.getString(url);
 
                 // Create a new News object with the title, category, author, date, url ,
                 // from the JSON response.
-                Restaurant restaurant = new Restaurant(newsTitle, newsSection, newsDate, newsUrl);
+                Restaurant restaurant = new Restaurant(newsTitle, newsSection, newsAuthor, newsDate, newsUrl);
 
                 // Add the new {@link Restaurant} to the list of restaurants.
                 restaurants.add(restaurant);

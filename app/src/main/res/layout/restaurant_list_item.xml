@@ -12,6 +12,10 @@
         android:id="@+id/category"
         style="@style/Text2"
         tools:text="category" />
+    <TextView
+        android:id="@+id/newsAuthor"
+        style="@style/Text4"
+        tools:text="title" />
 
     <TextView
         android:id="@+id/date"
