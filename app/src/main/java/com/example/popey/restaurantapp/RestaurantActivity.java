@@ -24,7 +24,7 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
      * URL for Restaurant news data from the GUARDIAN dataset
      */
     private static final String GUARDIAN_REQUEST_URL =
-            "http://content.guardianapis.com/search?show-fields=byline&q=the_best||restaurants&api-key==test";
+            "http://content.guardianapis.com/search?show-fields=byline&q=the_best||restaurants&api-key=test";
 
     /**
      * Constant value for the Restaurant news loader ID. We can choose any integer.
