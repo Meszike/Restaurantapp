@@ -7,6 +7,7 @@ import java.util.List;
 
 public class RestaurantLoader extends AsyncTaskLoader<List<Restaurant>> {
 
+    private static final String LOG_TAG = RestaurantLoader.class.getName ();
 
     /**
      * Query URL

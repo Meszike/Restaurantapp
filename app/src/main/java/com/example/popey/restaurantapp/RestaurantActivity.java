@@ -4,11 +4,15 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,14 +21,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Restaurant>> {
+public class RestaurantActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Restaurant>>, SharedPreferences.OnSharedPreferenceChangeListener  {
 
-
+    public static final String LOG_TAG = RestaurantActivity.class.getSimpleName ();
     /**
      * URL for Restaurant news data from the GUARDIAN dataset
      */
     private static final String GUARDIAN_REQUEST_URL =
-            "http://content.guardianapis.com/search?show-fields=byline&q=the_best||restaurants&api-key=test";
+            "http://content.guardianapis.com/search?show-fields=byline";
 
     /**
      * Constant value for the Restaurant news loader ID. We can choose any integer.
@@ -56,6 +60,11 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
 
         // Set the adapter on the {@link ListView}
         restaurantListView.setAdapter(rAdapter);
+
+        // Obtain a reference to the SharedPreferences file for this app
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);
+
 
         // Click listener on the ListView, which sends an intent to a web browser
         // to open a website with more information about the selected restaurant.
@@ -101,10 +110,64 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
     }
 
     @Override
-    public Loader<List<Restaurant>> onCreateLoader(int i, Bundle bundle) {
-        // New loader for the given URL
-        return new RestaurantLoader(this, GUARDIAN_REQUEST_URL);
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        // Obtain a reference to the SharedPreferences file for this app
+
+        if (key.equals(getString(R.string.settings_amount_key)) ||
+                key.equals(getString(R.string.settings_order_by_key))){
+            // Clear the ListView as a new query will be kicked off
+            rAdapter.clear();
+
+            // Hide the empty state text view as the loading indicator will be displayed
+            mEmptyStateTextView.setVisibility(View.GONE);
+
+            // Show the loading indicator while new data is being fetched
+            View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.VISIBLE);
+
+            // Restart the loader to requery the new as the query settings have been updated
+            getLoaderManager().restartLoader(RESTAURANT_LOADER_ID, null, this);
+        }
     }
+
+
+    @Override
+    public Loader<List<Restaurant>> onCreateLoader(int i, Bundle bundle) {
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String articlesAmount = sharedPrefs.getString(
+                getString(R.string.settings_amount_key),
+                getString(R.string.settings_amount_default));
+
+        String orderBy = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default));
+
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
+
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value. For example, the `format=geojson`
+        uriBuilder.appendQueryParameter ( "section", "lifeandstyle" );
+        uriBuilder.appendQueryParameter( "production-office", "us" );
+        uriBuilder.appendQueryParameter ( "q", "the_best||restaurant" );
+        uriBuilder.appendQueryParameter( "show-tags", "contributor" );
+        uriBuilder.appendQueryParameter( "show-references", "all" );
+        uriBuilder.appendQueryParameter( "order-by", orderBy );
+        uriBuilder.appendQueryParameter ( "page-size", articlesAmount );
+        uriBuilder.appendQueryParameter( "api-key", "51d29186-f983-44eb-9972-8a289449db3e" );
+
+        // Return the completed uri
+        return new RestaurantLoader(this, uriBuilder.toString());
+
+    }
+
 
     @Override
     public void onLoadFinished(Loader<List<Restaurant>> loader, List<Restaurant> restaurants) {
@@ -128,6 +191,23 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
     public void onLoaderReset(Loader<List<Restaurant>> loader) {
         // Loader reset, so we can clear out our existing data.
         rAdapter.clear();
+    }
+    @Override
+    // This method initialize the contents of the Activity's options menu.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

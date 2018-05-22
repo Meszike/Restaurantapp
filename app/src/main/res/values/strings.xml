@@ -7,4 +7,22 @@
     <string name="no_news">Sorry, unexpected problem with downloading data from Guardian\'s server.
         Close the app and try it later. </string>
     <string name="UrlProblem">Problem building the URL</string>
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">Restaurant news Settings</string>
+
+    <string name="settings_amount_label">News per page</string>
+    <string name="settings_amount_key" translatable="false">max_news</string>
+    <string name="settings_amount_default" translatable="false">15</string>
+
+
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_relevance_value</string>
+
+
+    <string name="settings_order_by_relevance_label">Relevance</string>
+    <string name="settings_order_by_relevance_value" translatable="false">relevance</string>
+
+    <string name="settings_order_by_most_recent_label">Newest</string>
+    <string name="settings_order_by_most_recent_value" translatable="false">newest</string>
 </resources>

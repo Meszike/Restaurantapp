@@ -55,6 +55,10 @@ public class Restaurant {
         return RestaurantNewsUrl;
     }
 
+    /**
+     * Returns the news author.
+     */
+
     public String getAuthor() {
         return RestaurantNewsAuthor;
     }
