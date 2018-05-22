@@ -21,9 +21,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Restaurant>>, SharedPreferences.OnSharedPreferenceChangeListener  {
+public class RestaurantActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Restaurant>>, SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final String LOG_TAG = RestaurantActivity.class.getSimpleName ();
+    public static final String LOG_TAG = RestaurantActivity.class.getSimpleName();
     /**
      * URL for Restaurant news data from the GUARDIAN dataset
      */
@@ -114,7 +114,7 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
         // Obtain a reference to the SharedPreferences file for this app
 
         if (key.equals(getString(R.string.settings_amount_key)) ||
-                key.equals(getString(R.string.settings_order_by_key))){
+                key.equals(getString(R.string.settings_order_by_key))) {
             // Clear the ListView as a new query will be kicked off
             rAdapter.clear();
 
@@ -136,7 +136,6 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
         String articlesAmount = sharedPrefs.getString(
                 getString(R.string.settings_amount_key),
@@ -146,7 +145,6 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default));
 
-
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
 
@@ -154,20 +152,15 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value. For example, the `format=geojson`
-        uriBuilder.appendQueryParameter ( "section", "lifeandstyle" );
-        uriBuilder.appendQueryParameter( "production-office", "us" );
-        uriBuilder.appendQueryParameter ( "q", "the_best||restaurant" );
-        uriBuilder.appendQueryParameter( "show-tags", "contributor" );
-        uriBuilder.appendQueryParameter( "show-references", "all" );
-        uriBuilder.appendQueryParameter( "order-by", orderBy );
-        uriBuilder.appendQueryParameter ( "page-size", articlesAmount );
-        uriBuilder.appendQueryParameter( "api-key", "51d29186-f983-44eb-9972-8a289449db3e" );
+        uriBuilder.appendQueryParameter("section", "lifeandstyle");
+        uriBuilder.appendQueryParameter("q", "restaurant||vegetarian");
+        uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("page-size", articlesAmount);
+        uriBuilder.appendQueryParameter("api-key", "51d29186-f983-44eb-9972-8a289449db3e");
 
         // Return the completed uri
         return new RestaurantLoader(this, uriBuilder.toString());
-
     }
-
 
     @Override
     public void onLoadFinished(Loader<List<Restaurant>> loader, List<Restaurant> restaurants) {
@@ -192,6 +185,7 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
         // Loader reset, so we can clear out our existing data.
         rAdapter.clear();
     }
+
     @Override
     // This method initialize the contents of the Activity's options menu.
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -199,6 +193,7 @@ public class RestaurantActivity extends AppCompatActivity implements LoaderManag
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

@@ -63,5 +63,4 @@ public class Restaurant {
         return RestaurantNewsAuthor;
     }
 
-
 }

@@ -74,15 +74,12 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
         try {
             Date dateNews = dateFormatJSON.parse(currentRestaurantClass.getNewsDate());
-
             String date = dateFormat2.format(dateNews);
             newsDateTextView.setText(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         // Return the whole list item layout
-
         return listItemView;
     }
 }

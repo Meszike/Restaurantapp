@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 
-
 public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +17,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static class RestaurantPreferenceFragment extends PreferenceFragment
-            implements Preference.OnPreferenceChangeListener{
+            implements Preference.OnPreferenceChangeListener {
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,7 @@ public class SettingsActivity extends AppCompatActivity {
                     CharSequence[] labels = listPreference.getEntries();
                     preference.setSummary(labels[prefIndex]);
                 }
-            }else{
+            } else {
                 preference.setSummary(stringValue);
             }
             return true;

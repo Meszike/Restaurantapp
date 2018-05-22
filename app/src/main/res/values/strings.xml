@@ -14,11 +14,9 @@
     <string name="settings_amount_key" translatable="false">max_news</string>
     <string name="settings_amount_default" translatable="false">15</string>
 
-
     <string name="settings_order_by_label">Order By</string>
     <string name="settings_order_by_key" translatable="false">order_by</string>
     <string name="settings_order_by_default" translatable="false">@string/settings_order_by_relevance_value</string>
-
 
     <string name="settings_order_by_relevance_label">Relevance</string>
     <string name="settings_order_by_relevance_value" translatable="false">relevance</string>
